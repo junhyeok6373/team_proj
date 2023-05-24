@@ -19,3 +19,5 @@ public class GymDTO {
     private String gymEvent;
     private String gymNumber;
 }
+
+// 추가
