@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.OptimisticLock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,9 +53,9 @@ public class MemberController {
     }
 
     // 헬스장 키워드 검색 API
-    @PostMapping("/search")
+    @PostMapping("/default_gym")
     public ResponseEntity<List<GymDTO>> getGymList(@RequestBody GymDTO gymDTO) {
-        List<GymDTO> gymDTOList = gymService.finAllGym();
+        List<GymDTO> gymDTOList = gymService.findAllGym(gymDTO);
         return ResponseEntity.status(HttpStatus.OK).body(gymDTOList);
     }
 
@@ -64,7 +65,7 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.OK).body(trainerDTOList);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register") // 회원가입 API
     public ResponseEntity<MemberDTO> postRegister(@RequestBody MemberDTO memberDTO) {
         MemberDTO memberDTO1 = memberService.save(memberDTO);
         return ResponseEntity.status(HttpStatus.OK).body(memberDTO1);
@@ -77,7 +78,7 @@ public class MemberController {
     }
 
     // 멤버, 트레이너 아이디, 예약시간정보 API
-    @PostMapping("/test1")
+    @PostMapping("/reserve")
     public ResponseEntity<ReserveDTO> test(@RequestBody ReserveDTO reserveDTO) {
         ReserveDTO reserveDTO1 = reserveService.save(reserveDTO);
         return ResponseEntity.status(HttpStatus.OK).body(reserveDTO1);
@@ -85,5 +86,10 @@ public class MemberController {
 
     // 회원가입, 로그인(사용자가 입력) - POST
 
-
+    // 예약 정보 API
+    @PostMapping("/reserve/info/{id}")
+    public ResponseEntity<ReserveDTO> reserveInfo(@PathVariable Long id) {
+        ReserveDTO reserveDTO = reserveService.reserveInfo(id);
+        return ResponseEntity.status(HttpStatus.OK).body(reserveDTO);
+    }
 }

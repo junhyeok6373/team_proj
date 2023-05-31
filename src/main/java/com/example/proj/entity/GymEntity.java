@@ -42,6 +42,12 @@ public class GymEntity {
     @Column
     private String gymPrice;
 
+    @Column
+    private String latitude;
+
+    @Column
+    private String longitude;
+
 
     @ToString.Exclude
     @OneToMany(mappedBy = "gym")

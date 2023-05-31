@@ -28,13 +28,6 @@ public class TrainerEntity {
     @Column
     private String trainerPhone_Number;
 
-    // 관리자 아이디 비밀번호 엔티티
-    @Column
-    private String trainerId;
-
-    @Column
-    private String trainerPw;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "gym_idx")
     private GymEntity gym;

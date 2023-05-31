@@ -41,9 +41,9 @@ public class GymService {
         return gymDTO;
     }
 
-    public List<GymDTO> finAllGym() {
+    public List<GymDTO> findAllGym(GymDTO gymDTO) {
         List<GymDTO> gymDTOS = null;
-        Optional<List<GymEntity>> optionalGymEntities = gymRepository.findAllGym();
+        Optional<List<GymEntity>> optionalGymEntities = gymRepository.findAllGym(gymDTO.getGymInfo());
         if (optionalGymEntities.isPresent()) {
             List<GymEntity> gymEntity = optionalGymEntities.get();
             gymDTOS = toList(gymEntity);
@@ -61,6 +61,8 @@ public class GymService {
                 .gymLocation(entity.getGymLocation())
                 .gymPrice(entity.getGymPrice())
                 .gymEvent(entity.getGymEvent())
+                .latitude(entity.getLatitude())
+                .longitude(entity.getLongitude())
                 .build();
         return gymDTO;
     }
@@ -68,6 +70,4 @@ public class GymService {
     public List<GymDTO> toList(List<GymEntity> entities) {
         return entities.stream().map(entity -> entityToDto(entity)).collect(Collectors.toList());
     }
-
-
 }

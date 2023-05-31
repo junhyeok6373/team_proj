@@ -1,5 +1,6 @@
 package com.example.proj.repository;
 
+import com.example.proj.dto.GymDTO;
 import com.example.proj.entity.GymEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ public interface GymRepository extends JpaRepository<GymEntity, Long> {
     @Query(value = "select g from GymEntity g where g.id = :id")
     Optional<GymEntity> findGymById(@Param("id") Long id);
 
-    @Query(value = "select g from GymEntity g")
-    Optional<List<GymEntity>> findAllGym();
+    @Query(value = "select g from GymEntity g where g.gymInfo like %:gymInfo%")
+    Optional<List<GymEntity>> findAllGym(@Param("gymInfo") String gymInfo);
+
 }

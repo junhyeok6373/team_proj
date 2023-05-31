@@ -18,6 +18,9 @@ public class GymDTO {
     private String gymPrice;
     private String gymEvent;
     private String gymNumber;
+
+    private String latitude;
+    private String longitude;
 }
 
 // 추가

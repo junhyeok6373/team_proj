@@ -19,4 +19,31 @@ public class ReserveDTO {
     private Long m_id;
     private Long t_id;
     private String str_date;
+
+    /*
+    예약자 정보
+  예약자 성함 :
+ 예약자 전화번호 :
+
+예약한 헬스장 정보
+  헬스장 이름 :
+  헬스장 위치 :
+  헬스장 전화번호 :
+
+예약한 트레이너 정보
+  트레이너 이름 :
+  트레이너 전화번호 :
+
+    */
+
+    private String r_m_name;
+    private String r_m_phone;
+
+    private String r_g_name;
+    private String r_g_location;
+    private String r_g_tel;
+
+    private String r_t_name;
+    private String r_t_phone;
+
 }
